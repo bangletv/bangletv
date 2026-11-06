@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  /* ============================================================== */
+  /* APPLE-INSPIRED OFF-WHITE / LIGHT SILVER EDITORIAL PALETTE      */
+  /* ============================================================== */
+  --color-canvas-base: #f5f5f7;
+  --color-surface-elevated: #ffffff;
+  --color-surface-subtle: #efeff4;
+  --color-border-hairline: #e5e5ea;
+  --color-ink-primary: #1d1d1f;
+  --color-ink-secondary: #6e6e73;
+  --color-ink-tertiary: #86868b;
+  --color-accent-editorial: #0066cc;
+  --color-live-crimson: #d70015;
+
+  --font-sans: 'Plus Jakarta Sans', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d2d2d7;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #aeaeb2;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes tickerSeamless {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-ticker-seamless {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: tickerSeamless 62s linear infinite;
+}
+
+.animate-ticker-seamless:hover,
+.animate-ticker-seamless.is-paused {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker-seamless {
+    animation: none;
+  }
+}
+
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

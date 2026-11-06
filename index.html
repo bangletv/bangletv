@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // In accordance with environment constraints (HMR disabled in AI Studio preview iframe),
+      // ignore Vite WebSocket connection and unhandled close rejections.
+      window.addEventListener('unhandledrejection', function (event) {
+        var reason = event.reason;
+        var msg = reason && (reason.message || String(reason));
+        var stack = reason && (reason.stack || '');
+        if (
+          (typeof msg === 'string' && (msg.includes('WebSocket') || msg.includes('ws:'))) ||
+          (typeof stack === 'string' && (stack.includes('@vite/client') || stack.includes('client.mjs')))
+        ) {
+          event.preventDefault();
+        }
+      });
+      window.addEventListener('error', function (event) {
+        var msg = event.message || '';
+        var filename = event.filename || '';
+        if (
+          (typeof msg === 'string' && msg.includes('WebSocket')) ||
+          (typeof filename === 'string' && (filename.includes('@vite/client') || filename.includes('client.mjs')))
+        ) {
+          event.preventDefault();
+        }
+      });
+    </script>
+    <title>Open IPTV Federation &amp; Bengal TV</title>
+    <meta
+      name="description"
+      content="Bengal TV &amp; Open IPTV Federation — Sovereign broadcast journalism and humanitarian documentary network with live global M3U streams, AI compliance censorship gateway, and community broadcasting."
+    />
+    <meta property="og:title" content="Open IPTV Federation &amp; Bengal TV" />
+    <meta
+      property="og:description"
+      content="Bengal TV &amp; Open IPTV Federation — Sovereign broadcast journalism and humanitarian documentary network with live global M3U streams, AI compliance censorship gateway, and community broadcasting."
+    />
+    <meta property="og:image" content="/bengal-tv-logo.jpg" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/bengal-tv-logo.jpg" />
+    <link rel="icon" type="image/jpeg" href="/bengal-tv-logo.jpg" />
+    <link rel="apple-touch-icon" href="/bengal-tv-logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#F5F5F7] text-[#1D1D1F] antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

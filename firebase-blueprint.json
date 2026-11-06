@@ -1,0 +1,242 @@
+{
+  "entities": {
+    "ContributorProfile": {
+      "title": "ContributorProfile",
+      "description": "Public journalist and documentary contributor profile without PII.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Firebase Auth UID of the contributor."
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80,
+          "description": "Public journalistic byline or correspondent name."
+        },
+        "communityId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Identifier of the contributor's home community desk."
+        },
+        "communityName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80,
+          "description": "Display name of the contributor's community desk."
+        },
+        "region": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80,
+          "description": "Geographic bureau or region (e.g. Dhaka, New York, London)."
+        },
+        "bio": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 300,
+          "description": "Short journalistic or documentary beat statement."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the profile was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the profile was last updated."
+        }
+      },
+      "required": [
+        "uid",
+        "displayName",
+        "communityId",
+        "communityName",
+        "region",
+        "bio",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "UserPrivateInfo": {
+      "title": "UserPrivateInfo",
+      "description": "Isolated PII document accessible strictly to the account owner.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Owner Firebase Auth UID."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "minLength": 3,
+          "maxLength": 160,
+          "description": "Verified account email address."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of creation."
+        }
+      },
+      "required": ["uid", "email", "createdAt"]
+    },
+    "VerifiedBroadcast": {
+      "title": "VerifiedBroadcast",
+      "description": "AI-vetted journalistic news or humanitarian documentary broadcast published by a verified contributor.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Document ID matching the broadcast path parameter."
+        },
+        "authorId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "UID of the verified journalist/contributor."
+        },
+        "authorName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80,
+          "description": "Journalist or documentary filmmaker byline."
+        },
+        "communityId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Community node identifier for scoped broadcasts."
+        },
+        "communityName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80,
+          "description": "Human-readable community node name."
+        },
+        "distributionScope": {
+          "type": "string",
+          "enum": ["PUBLIC", "COMMUNITY_ONLY"],
+          "description": "Broadcast visibility scope."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 140,
+          "description": "Broadcast headline or documentary title."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 1200,
+          "description": "Journalistic summary, factual context, and sourcing."
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "NEWS",
+            "LIVE_NEWS",
+            "DOCUMENTARY",
+            "EDUCATION",
+            "SCIENCE",
+            "PUBLIC_SERVICE",
+            "COMMUNITY"
+          ],
+          "description": "Strictly journalistic news and humanitarian/mankind documentary categories."
+        },
+        "location": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100,
+          "description": "Dateline location of the report or documentary."
+        },
+        "language": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 40,
+          "description": "Primary spoken language."
+        },
+        "videoUrl": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 600,
+          "description": "Uploaded video path (/uploads/...) or verified HTTPS stream URL."
+        },
+        "complianceStatus": {
+          "type": "string",
+          "enum": ["APPROVED"],
+          "description": "Must pass AI journalistic & compliance censorship gate prior to publication."
+        },
+        "complianceScore": {
+          "type": "number",
+          "description": "Compliance confidence score (70 to 100)."
+        },
+        "complianceReasoning": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 600,
+          "description": "AI compliance audit summary."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of publication."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last distribution scope update."
+        }
+      },
+      "required": [
+        "id",
+        "authorId",
+        "authorName",
+        "communityId",
+        "communityName",
+        "distributionScope",
+        "title",
+        "description",
+        "category",
+        "location",
+        "language",
+        "videoUrl",
+        "complianceStatus",
+        "complianceScore",
+        "complianceReasoning",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "ContributorProfile",
+      "description": "Contributor profile for registered Bengal TV correspondents and documentary uploaders."
+    },
+    "/users/{userId}/private/{docId}": {
+      "schema": "UserPrivateInfo",
+      "description": "Strictly owner-isolated PII record storing user email."
+    },
+    "/broadcasts/{broadcastId}": {
+      "schema": "VerifiedBroadcast",
+      "description": "Published journalistic news reports and humanitarian documentaries vetted by the AI compliance filter."
+    }
+  }
+}

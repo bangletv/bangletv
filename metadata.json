@@ -1,0 +1,8 @@
+{
+  "name": "Open IPTV Federation & Bengal TV",
+  "description": "Bengal TV & Open IPTV Federation — Sovereign broadcast journalism and humanitarian documentary network with live global M3U streams, AI compliance censorship gateway, and community broadcasting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
